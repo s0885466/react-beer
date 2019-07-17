@@ -1,0 +1,13 @@
+.header {
+    background: deepskyblue;
+}
+
+.header div {
+    padding: 1rem 0;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    padding: 2rem;
+}
