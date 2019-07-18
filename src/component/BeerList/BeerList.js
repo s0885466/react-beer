@@ -1,14 +1,20 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './BeerList.css';
+import BeerItem from '../BeerItem';
 
-class BeerList extends Component {
-    render() {
+const BeerList = ({beers}) => {
+    const beerList = beers.map(beer => {
+        //console.log(beer);
+
         return (
-            <div className="row">
-                
-            </div>
+        <BeerItem key={beer.id} beer={beer}/>
         );
-    }
-}
+    });
+    return (
+        <div className="row beer-list">
+            {beerList}
+        </div>
+    );
+};
 
 export default BeerList;
