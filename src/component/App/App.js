@@ -8,14 +8,15 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Header/>
+
                 <BrowserRouter>
+                    <Header/>
                     <Switch>
                         <Route path="/"
                                component={HomePage}
                                exact
                         />
-                        <Route path="/favorites"
+                        <Route path="/favorites/"
                                component={FavoritesPage}
                         />
                         <Route/>

@@ -1,0 +1,18 @@
+.select_pages button {
+    padding: 1rem;
+    width: 100%;
+}
+
+.select_pages div.text_center {
+    text-align: center;
+    padding: 1rem;
+}
+
+.hide {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+
+}

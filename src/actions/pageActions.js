@@ -3,15 +3,15 @@ export const PAGE_DOWN = 'PAGE_DOWN';
 export const SET_LAST_PAGE = 'SET_LAST_PAGE';
 
 
-export function nextPage(beers) {
+export function nextPage() {
     return {
         type: PAGE_UP
     }
 }
 
-export function prevPage(beers) {
+export function prevPage() {
     return {
-        type: PAGE_UP
+        type: PAGE_DOWN
     }
 }
 

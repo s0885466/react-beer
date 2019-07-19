@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 
 import {toggleFavoriteInBeers} from "../../actions/beersActions";
 
-
+import Proptypes from 'prop-types';
 import React, {Component} from 'react';
 import './BeerItem.css';
 
@@ -64,7 +64,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        dataBeers: state.dataBeers
+        dataBeers: state.dataBeers,
     }
 };
 
@@ -72,3 +72,8 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(BeerItem);
+
+BeerItem.propTypes = {
+    toggleFavoriteInBeers: Proptypes.func.isRequired,
+    beer: Proptypes.object.isRequired
+};

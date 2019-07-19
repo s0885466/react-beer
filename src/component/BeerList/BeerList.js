@@ -2,10 +2,15 @@ import React from 'react';
 import './BeerList.css';
 import BeerItem from '../BeerItem';
 
-const BeerList = ({beers}) => {
-    const beerList = beers.map(beer => {
-        //console.log(beer);
+const BeerList = (props) => {
+    const {page, amountOnPage} = props;
+    const firstIndex = page * amountOnPage - amountOnPage;
+    const lastIndex = firstIndex + amountOnPage - 1;
 
+    const beerListInPage = props.beers.slice(firstIndex, lastIndex + 1);
+
+
+    const beerList = beerListInPage.map(beer => {
         return (
         <BeerItem key={beer.id} beer={beer}/>
         );

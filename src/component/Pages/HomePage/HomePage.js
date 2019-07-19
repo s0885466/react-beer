@@ -4,10 +4,11 @@ import './HomePage.css';
 import Spinner from '../../Spinner';
 import Error from '../../Error';
 import BeerList from '../../BeerList';
+import SelectPage from '../../SelectPage';
 
 import {connect} from 'react-redux';
 
-import DataContext from '../../DataContext';
+import DataContext from '../../../services/DataContext';
 
 import {loadBeers} from "../../../actions/beersActions";
 import {setLastPage} from "../../../actions/pageActions";
@@ -24,11 +25,14 @@ class HomePage extends Component {
         this.context.getData()
             .then(data => {
                 //Первоначальная загрузка данных
-                this.props.loadBeers(data);
-                //Вычислим количество страниц
-                const amountBeers = data.length;
-                const lastPage = Math.ceil(amountBeers/this.props.dataPages.amountOnPage);
-                this.props.setLastPage(lastPage);
+                if (this.props.dataBeers.beers.length < 1) {
+                    this.props.loadBeers(data);
+                    //Вычислим количество страниц
+                    const amountBeers = data.length;
+                    const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
+                    this.props.setLastPage(lastPage);
+                }
+
             })
             .then(() => {
                 this.setState({load: false});
@@ -40,15 +44,18 @@ class HomePage extends Component {
     }
 
 
+
     render() {
-        const {beers} = this.props.dataBeers;
-        const {pages} = this.props.dataPages;
         const {load, error} = this.state;
         const result = (error)
-            ?  <Error/>
+            ? <Error/>
             : (load)
                 ? <Spinner/>
-                : <BeerList beers = {beers}/>;
+                : <React.Fragment>
+                    <SelectPage/>
+                    <BeerList {...this.props.dataBeers} {...this.props.dataPages}/>
+                </React.Fragment>
+        ;
 
         return (
             <React.Fragment>
@@ -77,3 +84,4 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(HomePage);
+
