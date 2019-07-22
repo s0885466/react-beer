@@ -1,0 +1,21 @@
+.sort {
+    font-size: 1.1rem;
+}
+
+.sort i{
+    color: white;
+    background: #474747;
+    padding: 10px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+
+.sort i:hover{
+    background: #686868;
+}
+
+.sort span {
+    background: #dbdbdb;
+    padding: 10px;
+}

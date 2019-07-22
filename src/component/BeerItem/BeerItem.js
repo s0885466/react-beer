@@ -9,6 +9,7 @@ import './BeerItem.css';
 class BeerItem extends Component {
 
     render() {
+        
         const {
             beer: {
                 id,

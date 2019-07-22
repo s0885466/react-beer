@@ -5,12 +5,14 @@ import Spinner from '../../Spinner';
 import Error from '../../Error';
 import BeerList from '../../BeerList';
 import SelectPage from '../../SelectPage';
+import Sort from '../../Sort';
+import Search from '../../Search';
 
 import {connect} from 'react-redux';
 
 import DataContext from '../../../services/DataContext';
 
-import {loadBeers} from "../../../actions/beersActions";
+import {loadBeers, sortBeers} from "../../../actions/beersActions";
 import {setLastPage} from "../../../actions/pageActions";
 
 class HomePage extends Component {
@@ -26,6 +28,9 @@ class HomePage extends Component {
             .then(data => {
                 //Первоначальная загрузка данных
                 if (this.props.dataBeers.beers.length < 1) {
+                    data.forEach(el => {
+                        el.isVisible = true;
+                    });
                     this.props.loadBeers(data);
                     //Вычислим количество страниц
                     const amountBeers = data.length;
@@ -44,7 +49,6 @@ class HomePage extends Component {
     }
 
 
-
     render() {
         const {load, error} = this.state;
         const result = (error)
@@ -52,6 +56,10 @@ class HomePage extends Component {
             : (load)
                 ? <Spinner/>
                 : <React.Fragment>
+                    <div className="row">
+                        <Sort sortBeers={this.props.sortBeers}/>
+                        <Search/>
+                    </div>
                     <SelectPage/>
                     <BeerList {...this.props.dataBeers} {...this.props.dataPages}/>
                 </React.Fragment>
@@ -75,7 +83,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         loadBeers: (data) => dispatch(loadBeers(data)),
-        setLastPage: (page) => dispatch(setLastPage(page))
+        setLastPage: (page) => dispatch(setLastPage(page)),
+        sortBeers: (param) => dispatch(sortBeers(param))
     }
 };
 
