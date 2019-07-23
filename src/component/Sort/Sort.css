@@ -19,3 +19,7 @@
     background: #dbdbdb;
     padding: 10px;
 }
+
+.sort button {
+    padding: 0 20px;
+}

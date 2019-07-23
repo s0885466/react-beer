@@ -23,6 +23,7 @@ margin: 0;
     text-align: left;
     padding: 1rem;
     float: right;
+    cursor: pointer;
 }
 
 .clearfix:after {

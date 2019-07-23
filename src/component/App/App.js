@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {HomePage, FavoritesPage} from '../Pages';
+import {HomePage, FavoritesPage, SearchPage} from '../Pages';
 import ErrorBoundary from '../ErrorBoundary';
 
 import Header from '../Header';
@@ -19,6 +19,9 @@ class App extends Component {
                                    </ErrorBoundary>
                                )}
                                exact
+                        />
+                        <Route path="/search/"
+                               render={() => <SearchPage/>}
                         />
                         <Route path="/favorites/"
                                render={() => <FavoritesPage/>}

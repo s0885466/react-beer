@@ -6,13 +6,12 @@ import Error from '../../Error';
 import BeerList from '../../BeerList';
 import SelectPage from '../../SelectPage';
 import Sort from '../../Sort';
-import Search from '../../Search';
 
 import {connect} from 'react-redux';
 
 import DataContext from '../../../services/DataContext';
 
-import {loadBeers, sortBeers} from "../../../actions/beersActions";
+import {loadBeers, sortBeers, filterBeers} from "../../../actions/beersActions";
 import {setLastPage} from "../../../actions/pageActions";
 
 class HomePage extends Component {
@@ -24,9 +23,12 @@ class HomePage extends Component {
     };
 
     componentDidMount() {
+        console.log('componentDidMount homePage');
+
+
         this.context.getData()
             .then(data => {
-                //Первоначальная загрузка данных
+                //Первоначальная загрузка данных, когда Redux пуст
                 if (this.props.dataBeers.beers.length < 1) {
                     data.forEach(el => {
                         el.isVisible = true;
@@ -37,7 +39,6 @@ class HomePage extends Component {
                     const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
                     this.props.setLastPage(lastPage);
                 }
-
             })
             .then(() => {
                 this.setState({load: false});
@@ -58,7 +59,6 @@ class HomePage extends Component {
                 : <React.Fragment>
                     <div className="row">
                         <Sort sortBeers={this.props.sortBeers}/>
-                        <Search/>
                     </div>
                     <SelectPage/>
                     <BeerList {...this.props.dataBeers} {...this.props.dataPages}/>
@@ -84,7 +84,8 @@ const mapDispatchToProps = dispatch => {
     return {
         loadBeers: (data) => dispatch(loadBeers(data)),
         setLastPage: (page) => dispatch(setLastPage(page)),
-        sortBeers: (param) => dispatch(sortBeers(param))
+        sortBeers: (param) => dispatch(sortBeers(param)),
+        filterBeers: (filter) => dispatch(sortBeers(filter))
     }
 };
 

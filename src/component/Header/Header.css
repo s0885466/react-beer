@@ -2,13 +2,24 @@
     background: #6495ed;
 }
 
+.header div:first-child {
+    margin-right: auto;
+}
+
 .header div {
     padding: 1rem 0;
+    transition: 0.5s;
 }
+
+.header div:hover {
+    background: #6e9fff;
+}
+
 
 div .selected{
     background: #6e9fff;
 }
+
 
 a {
     color: white;
@@ -19,3 +30,5 @@ a {
 div .header .text_center {
     text-align: center;
 }
+
+

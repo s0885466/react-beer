@@ -7,13 +7,17 @@ const BeerList = (props) => {
     const firstIndex = page * amountOnPage - amountOnPage;
     const lastIndex = firstIndex + amountOnPage - 1;
 
+
     const beerListInPage = props.beers.slice(firstIndex, lastIndex + 1);
 
 
     const beerList = beerListInPage.map(beer => {
-        return (
-        <BeerItem key={beer.id} beer={beer}/>
-        );
+        if (beer.isVisible) {
+            return (
+                <BeerItem key={beer.id} beer={beer}/>
+            );
+        }
+
     });
     return (
         <div className="row beer-list">
@@ -23,3 +27,13 @@ const BeerList = (props) => {
 };
 
 export default BeerList;
+
+/*
+const f = (newProps) => {
+    const newFunc = (props) => {
+        return BeerList(props);
+    };
+    return newFunc;
+};
+
+export default f(4);*/

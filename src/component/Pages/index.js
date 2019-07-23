@@ -1,3 +1,4 @@
 import HomePage from './HomePage/HomePage';
 import FavoritesPage from './FavoritesPage/FavoritesPage';
-export {HomePage, FavoritesPage};
+import SearchPage from './SearchPage/SearchPage';
+export {HomePage, FavoritesPage, SearchPage};

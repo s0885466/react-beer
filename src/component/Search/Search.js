@@ -1,16 +1,46 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Search.css';
+import {connect} from 'react-redux';
+import {filterBeers} from "../../actions/beersActions";
 
-const Search = () => {
-    return (
-        <div className="search col-4">
-            <div className="right">
-                <label htmlFor="search">Поиск: </label>
-                <input type="text" id="search"/>
+class Search extends Component{
+    filterBeers = (e) => {
+        this.props.filterBeers(e.target.value);
+    };
+
+    componentDidMount() {
+
+    }
+
+    componentWillUnmount() {
+        //Когда компонент умрет мы делаем все элементы видимыми
+        this.props.filterBeers('');
+    }
+
+    render(){
+        return (
+            <div className="row search">
+                <div className="right">
+                    <label htmlFor="search">Поиск: </label>
+                    <input
+                        onChange={this.filterBeers}
+                        type="text" id="search"/>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        dataBeers: state.dataBeers
+    }
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        filterBeers: (filter) => dispatch(filterBeers(filter))
+    }
+};
 
-export default Search;
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

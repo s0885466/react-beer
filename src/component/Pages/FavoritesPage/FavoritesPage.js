@@ -10,7 +10,6 @@ import {setLastPage} from "../../../actions/pageActions";
 
 class FavoritesPage extends Component {
     render() {
-        console.log(this.props);
 
         return (
             <div>

@@ -1,5 +1,10 @@
-.search {
+div.search {
     padding: 2px 0;
+    width: 100%;
+}
+
+div .search .right {
+    margin-left: auto;
 }
 
 .search input {
@@ -10,8 +15,4 @@
 
 .search label {
     font-size: 1.1rem;
-}
-
-.search .right {
-    float: right;
 }

@@ -1,11 +1,13 @@
 import {
     BEERS_LOADED,
     BEERS_TOGGLE_FAVORITES,
-    BEERS_SORT
+    BEERS_SORT,
+    BEERS_FILTER
 } from "../actions/beersActions";
 
 const initialState = {
-    beers: []
+    beers: [],
+    filter: ''
 };
 
 
@@ -13,7 +15,7 @@ export const beersReducer = (state = initialState, action) => {
     switch (action.type) {
         case BEERS_LOADED:
             return {
-                beers: action.payload
+                ...state, beers: action.payload
             };
 
         case BEERS_TOGGLE_FAVORITES:
@@ -23,7 +25,7 @@ export const beersReducer = (state = initialState, action) => {
             beer.favorite = (beer.favorite) ? false : true;
 
             return {
-                beers: [...state.beers.slice(0, index), beer, ...state.beers.slice(index + 1)]
+                ...state, beers: [...state.beers.slice(0, index), beer, ...state.beers.slice(index + 1)]
             };
 
         case BEERS_SORT: {
@@ -36,7 +38,28 @@ export const beersReducer = (state = initialState, action) => {
             });
 
             return {
-                beers: newBeers
+                ...state, beers: newBeers
+            }
+        }
+
+        case BEERS_FILTER: {
+            const filter = action.payload.toLowerCase();
+            let newBeers = [...state.beers];
+
+            if (!filter) {
+                newBeers.forEach((beer) => {
+                    beer.isVisible = true;
+                });
+            } else {
+                newBeers.forEach((beer) => {
+                    (beer.name.toLowerCase().indexOf(filter) > -1)
+                    ? beer.isVisible = true
+                    : beer.isVisible = false
+                });
+            }
+
+            return {
+                ...state, beers: newBeers
             }
         }
 
