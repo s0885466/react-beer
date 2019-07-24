@@ -6,10 +6,6 @@ import {setLastPage} from "../../actions/pageActions";
 import DataContext from '../../services/DataContext';
 
 class DataComponent extends Component {
-    state = {
-        error: false,
-        load: true
-    };
 
     static contextType = DataContext;
 
@@ -17,18 +13,14 @@ class DataComponent extends Component {
         this.context.getData()
             .then(data => {
                 //Первоначальная загрузка данных, когда Redux пуст
-                this.props.loadBeers(data);
-                this.props.filterBeers('');
-                //Вычислим количество страниц
-                const amountBeers = data.length;
-                const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
-                this.props.setLastPage(lastPage);
-            })
-            .then(() => {
-                this.setState({load: false});
+                  this.props.loadBeers(data);
+                  this.props.filterBeers('');
+                  //Вычислим количество страниц
+                  const amountBeers = data.length;
+                  const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
+                  this.props.setLastPage(lastPage);
             })
             .catch(err => {
-                this.setState({error: true});
                 console.error(err);
             })
     }

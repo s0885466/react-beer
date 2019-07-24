@@ -16,15 +16,16 @@ class Data {
 
     getData() {
 
-        const body = Promise.race([
+        return Promise.race([
             fetch(this.url),
             fetch(this.urlReserve)
         ])
             .then((response) => {
                 return response.json();
+            })
+            .catch((err) => {
+                console.log(err);
             });
-
-        return body;
     }
 }
 

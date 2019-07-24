@@ -23,10 +23,19 @@ class App extends Component {
                                exact
                         />
                         <Route path="/search/"
-                               render={() => <SearchPage/>}
+                               render={() => (
+                                   <ErrorBoundary>
+                                       <SearchPage/>
+                                   </ErrorBoundary>
+                               )}
                         />
                         <Route path="/favorites/"
-                               render={() => <FavoritesPage/>}
+                               render={() => (
+                                   <ErrorBoundary>
+                                       <FavoritesPage/>
+                                   </ErrorBoundary>
+
+                               )}
                         />
                         <Route/>
                     </Switch>

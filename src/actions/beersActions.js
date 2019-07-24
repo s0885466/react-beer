@@ -6,7 +6,8 @@ export const BEERS_FILTER = 'BEERS_FILTER';
 export function loadBeers(beers) {
     return {
         type: BEERS_LOADED,
-        payload: beers
+        payload: beers,
+        loading: true
     }
 }
 

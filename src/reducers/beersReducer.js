@@ -7,7 +7,8 @@ import {
 
 const initialState = {
     beers: [],
-    filter: ''
+    filter: '',
+    loading: true
 };
 
 
@@ -15,14 +16,14 @@ export const beersReducer = (state = initialState, action) => {
     switch (action.type) {
         case BEERS_LOADED:
             return {
-                ...state, beers: action.payload
+                ...state, beers: action.payload, loading: false
             };
 
         case BEERS_TOGGLE_FAVORITES:
             const idBeer = +action.payload;
             const index = state.beers.findIndex(beer => beer.id === idBeer);
             const beer = state.beers[index];
-            beer.favorite = (beer.favorite) ? false : true;
+            beer.favorite = ! beer.favorite;
 
             return {
                 ...state, beers: [...state.beers.slice(0, index), beer, ...state.beers.slice(index + 1)]
@@ -59,7 +60,7 @@ export const beersReducer = (state = initialState, action) => {
             }
 
             return {
-                ...state, beers: newBeers
+                ...state, beers: newBeers, filter: filter
             }
         }
 

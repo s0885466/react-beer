@@ -4,8 +4,7 @@ import './index.css';
 import App from './component/App';
 import Data from './services/Data';
 import DataContext from './services/DataContext';
-import {applyMiddleware, createStore} from 'redux';
-import logger from 'redux-logger'
+import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import rootReducer from './reducers';
 
@@ -18,8 +17,7 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-//applyMiddleware(logger)
-//
+
 
 ReactDOM.render(
     <Provider store={store}>

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {filterBeers} from "../../actions/beersActions";
 
 class Search extends Component{
+
     filterBeers = (e) => {
         this.props.filterBeers(e.target.value);
     };
