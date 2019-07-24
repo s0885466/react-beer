@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {HomePage, FavoritesPage, SearchPage} from '../Pages';
 import ErrorBoundary from '../ErrorBoundary';
-import DataComponent from '../DataComponent';
+import DataComponent from '../Connect';
 
 import Header from '../Header';
 

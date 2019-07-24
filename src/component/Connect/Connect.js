@@ -5,7 +5,7 @@ import {setLastPage} from "../../actions/pageActions";
 
 import DataContext from '../../services/DataContext';
 
-class DataComponent extends Component {
+class Connect extends Component {
 
     static contextType = DataContext;
 
@@ -48,4 +48,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DataComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(Connect);
