@@ -5,14 +5,34 @@ import {Link} from 'react-router-dom';
 class Header extends Component {
     state = {
         elements: [
-            {id: 1, link: './', name: 'Главная', classItem: 'col-2 text_center selected'},
+            {id: 1, link: './', name: 'Главная', classItem: 'col-2 text_center'},
             {id: 2, link: './search', name: 'Поиск', classItem: 'col-2 text_center'},
             {id: 3, link: './favorites', name: 'Избранное', classItem: 'col-2 text_center'}
         ]
     };
 
+    componentWillMount() {
+        const path = window.location.pathname;
+        const index = this.state.elements.findIndex((el) => {
+            return el.link.slice(1) === path;
+        });
+        if (index > -1) {
+            const {elements} = this.state;
+            const newElement = elements[index];
+            newElement.classItem = 'col-2 text_center selected';
+            const newElements = [
+                ...elements.slice(0, index),
+                newElement,
+                ...elements.slice(index + 1)
+            ];
+            this.setState({elements: newElements})
+        }
+
+
+    }
+
     setClass = (id) => {
-      const newElements = [...this.state.elements];
+        const newElements = [...this.state.elements];
         newElements.forEach((el) => {
             if (el.id !== id) {
                 el.classItem = 'col-2 text_center';
@@ -43,7 +63,6 @@ class Header extends Component {
         );
     }
 }
-
 
 
 export default Header;

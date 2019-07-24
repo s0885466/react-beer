@@ -3,13 +3,12 @@ import './BeerList.css';
 import BeerItem from '../BeerItem';
 
 const BeerList = (props) => {
+
     const {page, amountOnPage} = props;
     const firstIndex = page * amountOnPage - amountOnPage;
     const lastIndex = firstIndex + amountOnPage - 1;
 
-
     const beerListInPage = props.beers.slice(firstIndex, lastIndex + 1);
-
 
     const beerList = beerListInPage.map(beer => {
         if (beer.isVisible) {
@@ -28,12 +27,3 @@ const BeerList = (props) => {
 
 export default BeerList;
 
-/*
-const f = (newProps) => {
-    const newFunc = (props) => {
-        return BeerList(props);
-    };
-    return newFunc;
-};
-
-export default f(4);*/

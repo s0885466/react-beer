@@ -6,7 +6,7 @@ import Spinner from '../../Spinner';
 import {connect} from 'react-redux';
 
 
-class SearchPage extends Component {
+export class SearchPage extends Component {
 
     render() {
         const {loading} = this.props.dataBeers;

@@ -32,6 +32,7 @@ class Search extends Component{
     }
 }
 
+
 const mapStateToProps = state => {
     return {
         dataBeers: state.dataBeers

@@ -1,39 +1,46 @@
 import React, {Component} from 'react';
 import './FavoritesPage.css';
 
+import BeerList from '../../BeerList';
+import Spinner from '../../Spinner';
+
 import {connect} from 'react-redux';
-import {loadBeers} from "../../../actions/beersActions";
-import {setLastPage} from "../../../actions/pageActions";
+import Search from "../../Search";
 
+export class FavoritesPage extends Component {
 
-
-
-class FavoritesPage extends Component {
     render() {
+        const {loading} = this.props.dataBeers;
+
+        const dataPages = {
+            page: 1,
+            amountOnPage: this.props.dataBeers.beers.length + 1
+        };
+
+        const beers = this.props.dataBeers.beers;
+        const newBeers = beers.filter((beer) => (beer.favorite === true));
+
+        const result = (loading)
+            ? <Spinner/>
+            : <React.Fragment>
+                <Search/>
+                <BeerList beers={newBeers} {...dataPages}/>
+
+            </React.Fragment>;
 
         return (
-            <div>
-                FavoritesPage
-            </div>
+            <React.Fragment>
+                {result}
+            </React.Fragment>
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        dataBeers: state.dataBeers,
-        dataPages: state.dataPages
+        dataBeers: state.dataBeers
     }
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        loadBeers: (data) => dispatch(loadBeers(data)),
-        setLastPage: (page) => dispatch(setLastPage(page))
-    }
-};
+export default connect(mapStateToProps)(FavoritesPage);
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(FavoritesPage);
