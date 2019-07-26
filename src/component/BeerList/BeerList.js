@@ -2,6 +2,8 @@ import React from 'react';
 import './BeerList.css';
 import BeerItem from '../BeerItem';
 
+import WithSearch from '../HOC/WithSearch'
+
 const BeerList = (props) => {
 
     const {page, amountOnPage} = props;
@@ -25,5 +27,5 @@ const BeerList = (props) => {
     );
 };
 
-export default BeerList;
+export default WithSearch(BeerList);
 

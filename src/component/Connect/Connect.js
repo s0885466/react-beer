@@ -10,6 +10,7 @@ class Connect extends Component {
     static contextType = DataContext;
 
     componentDidMount() {
+
         this.context.getData()
             .then(data => {
                 //Первоначальная загрузка данных, когда Redux пуст

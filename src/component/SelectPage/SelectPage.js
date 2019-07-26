@@ -10,6 +10,8 @@ class SelectPage extends Component {
         const {nextPage, prevPage} = this.props;
         const {page, lastPage} = this.props.dataPages;
 
+
+
         const classPrevButton = (page > 1)
             ? ""
             : "hide";
@@ -27,7 +29,7 @@ class SelectPage extends Component {
                     </button>
                 </div>
                 <div className="col-8 text_center">
-                    Страница {page}({lastPage})
+                    <b>Страница {page}({lastPage})</b>
                 </div>
                 <div className="col-2">
                     <button

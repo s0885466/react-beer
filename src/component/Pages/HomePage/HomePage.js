@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './HomePage.css';
-
+import Search from "../../Search";
 import Spinner from '../../Spinner';
 import BeerList from '../../BeerList';
 import SelectPage from '../../SelectPage';
@@ -19,7 +19,6 @@ class HomePage extends Component {
     componentDidMount() {
     }
 
-
     render() {
         const {loading} = this.props.dataBeers;
 
@@ -28,8 +27,11 @@ class HomePage extends Component {
                 : <React.Fragment>
                     <div className="row">
                         <Sort sortBeers={this.props.sortBeers}/>
+                        <Search/>
                     </div>
+
                     <SelectPage/>
+
                     <BeerList {...this.props.dataBeers} {...this.props.dataPages}/>
                 </React.Fragment>
         ;
@@ -56,7 +58,6 @@ const mapDispatchToProps = dispatch => {
         sortBeers: (param) => dispatch(sortBeers(param)),
     }
 };
-
 
 export default connect(
     mapStateToProps,

@@ -1,6 +1,7 @@
 export const PAGE_UP = 'PAGE_UP';
 export const PAGE_DOWN = 'PAGE_DOWN';
 export const SET_LAST_PAGE = 'SET_LAST_PAGE';
+export const SET_AMOUNT_PAGE = 'SET_AMOUNT_PAGE';
 
 
 export function nextPage() {
@@ -21,3 +22,11 @@ export function setLastPage(page) {
         payload: page
     }
 }
+
+export function setAmountPage(page) {
+    return {
+        type: SET_AMOUNT_PAGE,
+        payload: page
+    }
+}
+

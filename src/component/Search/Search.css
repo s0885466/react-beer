@@ -1,10 +1,9 @@
 div.search {
     padding: 2px 0;
-    width: 100%;
 }
 
-div .search .right {
-    margin-left: auto;
+.search .right {
+    float: right;
 }
 
 .search input {

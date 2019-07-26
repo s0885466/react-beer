@@ -3,24 +3,20 @@ import './Search.css';
 import {connect} from 'react-redux';
 import {filterBeers} from "../../actions/beersActions";
 
-class Search extends Component{
+class Search extends Component {
 
     filterBeers = (e) => {
         this.props.filterBeers(e.target.value);
     };
-
-    componentDidMount() {
-
-    }
 
     componentWillUnmount() {
         //Когда компонент умрет мы делаем все элементы видимыми
         this.props.filterBeers('');
     }
 
-    render(){
+    render() {
         return (
-            <div className="row search">
+            <div className="col-4 search">
                 <div className="right">
                     <label htmlFor="search">Поиск: </label>
                     <input
