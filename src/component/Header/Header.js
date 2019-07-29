@@ -6,7 +6,6 @@ class Header extends Component {
     state = {
         elements: [
             {id: 1, link: './', name: 'Главная', classItem: 'col-2 text_center'},
-            {id: 2, link: './search', name: 'Поиск', classItem: 'col-2 text_center'},
             {id: 3, link: './favorites', name: 'Избранное', classItem: 'col-2 text_center'}
         ]
     };

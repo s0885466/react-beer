@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {HomePage, FavoritesPage, SearchPage} from '../Pages';
+import {HomePage, FavoritesPage} from '../Pages';
 import ErrorBoundary from '../ErrorBoundary';
 import DataComponent from '../Connect';
 
@@ -21,13 +21,6 @@ class App extends Component {
                                    </ErrorBoundary>
                                )}
                                exact
-                        />
-                        <Route path="/search/"
-                               render={() => (
-                                   <ErrorBoundary>
-                                       <SearchPage/>
-                                   </ErrorBoundary>
-                               )}
                         />
                         <Route path="/favorites/"
                                render={() => (

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './HomePage.css';
+
 import Search from "../../Search";
 import Spinner from '../../Spinner';
 import BeerList from '../../BeerList';
@@ -12,12 +13,6 @@ import {loadBeers, sortBeers} from "../../../actions/beersActions";
 import {setLastPage} from "../../../actions/pageActions";
 
 class HomePage extends Component {
-
-    componentWillReceiveProps(nextProps){
-    }
-
-    componentDidMount() {
-    }
 
     render() {
         const {loading} = this.props.dataBeers;

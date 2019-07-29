@@ -1,11 +1,11 @@
 .select_pages button {
-    padding: 1rem;
+    padding: 0.7rem;
     width: 100%;
 }
 
 .select_pages div.text_center {
     text-align: center;
-    padding: 1rem;
+    padding: 0.7rem;
 }
 
 .hide {

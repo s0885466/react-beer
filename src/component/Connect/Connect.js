@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {loadBeers, filterBeers} from "../../actions/beersActions";
-import {setLastPage} from "../../actions/pageActions";
+import {setLastPage, setAmountPage} from "../../actions/pageActions";
 
 import DataContext from '../../services/DataContext';
 
@@ -18,7 +18,8 @@ class Connect extends Component {
                   this.props.filterBeers('');
                   //Вычислим количество страниц
                   const amountBeers = data.length;
-                  const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
+                  setAmountPage(this.props.dataPages.amountOnPageDefault);
+                  const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPageDefault);
                   this.props.setLastPage(lastPage);
             })
             .catch(err => {
@@ -33,7 +34,6 @@ class Connect extends Component {
     }
 }
 
-
 const mapStateToProps = state => {
     return {
         dataBeers: state.dataBeers,
@@ -45,6 +45,7 @@ const mapDispatchToProps = dispatch => {
     return {
         loadBeers: (data) => dispatch(loadBeers(data)),
         setLastPage: (page) => dispatch(setLastPage(page)),
+        setAmountPage: (page) => dispatch(setAmountPage(page)),
         filterBeers: (filter) => dispatch(filterBeers(filter))
     }
 };

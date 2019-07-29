@@ -10,15 +10,12 @@ class SelectPage extends Component {
         const {nextPage, prevPage} = this.props;
         const {page, lastPage} = this.props.dataPages;
 
-
-
         const classPrevButton = (page > 1)
             ? ""
             : "hide";
         const classNextButton = (page < lastPage)
             ? ""
             : "hide";
-
 
         return (
             <div className="select_pages row">

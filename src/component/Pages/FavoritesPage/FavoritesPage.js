@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import './FavoritesPage.css';
 
-import BeerList from '../../BeerList';
+import Search from "../../Search";
 import Spinner from '../../Spinner';
+import BeerList from '../../BeerList';
+import SelectPage from '../../SelectPage';
+import Sort from '../../Sort';
 
 import {connect} from 'react-redux';
-import Search from "../../Search";
+
+import {loadBeers, sortBeers} from "../../../actions/beersActions";
+import {setLastPage} from "../../../actions/pageActions";
 
 export class FavoritesPage extends Component {
 

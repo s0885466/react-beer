@@ -2,7 +2,13 @@ export const PAGE_UP = 'PAGE_UP';
 export const PAGE_DOWN = 'PAGE_DOWN';
 export const SET_LAST_PAGE = 'SET_LAST_PAGE';
 export const SET_AMOUNT_PAGE = 'SET_AMOUNT_PAGE';
+export const SET_FIRST_PAGE = 'SET_AMOUNT_PAGE';
 
+export function setFirstPage() {
+    return {
+        type: SET_FIRST_PAGE
+    }
+}
 
 export function nextPage() {
     return {
