@@ -63,5 +63,4 @@ SelectPage.propTypes = {
         amountOnPage: Proptypes.number.isRequired,
         lastPage: Proptypes.number.isRequired,
     })
-
 };

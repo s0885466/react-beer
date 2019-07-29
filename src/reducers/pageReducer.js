@@ -8,9 +8,9 @@ import {
 
 const initialState = {
     page: 1,
-    amountOnPage: 6,
-    lastPage: 1,
-    amountOnPageDefault: 6
+    amountOnPage: 10,
+    lastPage: 0,
+    amountOnPageDefault: 10
 };
 
 export const pageReducer = (state = initialState, action) => {
@@ -33,6 +33,7 @@ export const pageReducer = (state = initialState, action) => {
             return {
                 ...state, lastPage: action.payload
             };
+
         case SET_AMOUNT_PAGE:
             return {
                 ...state, amountOnPage: action.payload

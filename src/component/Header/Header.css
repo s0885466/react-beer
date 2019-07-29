@@ -2,21 +2,21 @@
     background: #6495ed;
 }
 
-.header div:first-child {
+.header a:first-child {
     margin-right: auto;
 }
 
-.header div {
+.header a {
     padding: 1rem 0;
     transition: 0.5s;
 }
 
-.header div:hover {
+.header a:hover {
     background: #6e9fff;
 }
 
 
-div .selected{
+a.selected{
     background: #6e9fff;
 }
 

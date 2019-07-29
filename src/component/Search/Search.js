@@ -9,14 +9,13 @@ class Search extends Component {
     filterBeers = (e) => {
         this.props.setFirstPage(1);
         const amountBeers = this.props.dataBeers.beers.length;
-
         if (e.target.value) {
-            this.props.setAmountPage(amountBeers);
+            //this.props.setAmountPage(amountBeers);
             this.props.setLastPage(1);
         } else {
-            const amountBeersOnPage = this.props.dataPages.amountOnPageDefault;
-            this.props.setAmountPage(amountBeersOnPage);
-            const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
+            //const amountBeersOnPage = this.props.dataPages.amountOnPageDefault;
+            //this.props.setAmountPage(amountBeersOnPage);
+            const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPageDefault);
             this.props.setLastPage(lastPage);
         }
 

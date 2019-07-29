@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {HomePage, FavoritesPage} from '../Pages';
 import ErrorBoundary from '../ErrorBoundary';
-import DataComponent from '../Connect';
+import DataComponent from '../ToRedux';
 
 import Header from '../Header';
 
@@ -29,6 +29,7 @@ class App extends Component {
                                    </ErrorBoundary>
 
                                )}
+                               exact
                         />
                         <Route/>
                     </Switch>

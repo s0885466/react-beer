@@ -14,7 +14,13 @@ import {setLastPage} from "../../../actions/pageActions";
 
 class HomePage extends Component {
 
+    componentDidMount() {
+        console.log('componentDidMount HomePage')
+    }
+
     render() {
+        console.log('render HomePage');
+
         const {loading} = this.props.dataBeers;
 
         const result = (loading)

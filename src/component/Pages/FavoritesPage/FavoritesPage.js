@@ -4,34 +4,41 @@ import './FavoritesPage.css';
 import Search from "../../Search";
 import Spinner from '../../Spinner';
 import BeerList from '../../BeerList';
-import SelectPage from '../../SelectPage';
 import Sort from '../../Sort';
-
 import {connect} from 'react-redux';
 
-import {loadBeers, sortBeers} from "../../../actions/beersActions";
-import {setLastPage} from "../../../actions/pageActions";
+import {sortBeers} from "../../../actions/beersActions";
 
-export class FavoritesPage extends Component {
+class FavoritesPage extends Component {
 
     render() {
-        const {loading} = this.props.dataBeers;
-
+        const {loading, beers} = this.props.dataBeers;
+        const newBeers = beers.filter((beer) => (beer.favorite === true));
         const dataPages = {
             page: 1,
-            amountOnPage: this.props.dataBeers.beers.length + 1
+            amountOnPageDefault: beers.length + 1
         };
-
-        const beers = this.props.dataBeers.beers;
-        const newBeers = beers.filter((beer) => (beer.favorite === true));
 
         const result = (loading)
             ? <Spinner/>
             : <React.Fragment>
-                <Search/>
-                <BeerList beers={newBeers} {...dataPages}/>
+                <div className="row">
+                    <Sort sortBeers={this.props.sortBeers}/>
+                    <Search/>
+                </div>
+                <div className="select_pages row">
+                    <div className="col-2">
+                    </div>
+                    <div className="col-8 text_center">
+                        <b>Страница 1(1)</b>
+                    </div>
+                    <div className="col-2">
 
-            </React.Fragment>;
+                    </div>
+                </div>
+                <BeerList beers={newBeers} {...dataPages}/>
+            </React.Fragment>
+        ;
 
         return (
             <React.Fragment>
@@ -43,9 +50,18 @@ export class FavoritesPage extends Component {
 
 const mapStateToProps = state => {
     return {
-        dataBeers: state.dataBeers
+        dataBeers: state.dataBeers,
     }
 };
 
-export default connect(mapStateToProps)(FavoritesPage);
+const mapDispatchToProps = dispatch => {
+    return {
+        sortBeers: (param) => dispatch(sortBeers(param)),
+    }
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(FavoritesPage);
 

@@ -6,9 +6,9 @@ import WithSearch from '../HOC/WithSearch'
 
 const BeerList = (props) => {
 
-    const {page, amountOnPage} = props;
-    const firstIndex = page * amountOnPage - amountOnPage;
-    const lastIndex = firstIndex + amountOnPage - 1;
+    const {page, amountOnPageDefault} = props;
+    const firstIndex = page * amountOnPageDefault - amountOnPageDefault;
+    const lastIndex = firstIndex + amountOnPageDefault - 1;
 
     const beerListInPage = props.beers.slice(firstIndex, lastIndex + 1);
 
