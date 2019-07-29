@@ -31,3 +31,4 @@ export function filterBeers(filter) {
         payload: filter
     }
 }
+

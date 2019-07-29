@@ -13,9 +13,9 @@ class Search extends Component {
             //this.props.setAmountPage(amountBeers);
             this.props.setLastPage(1);
         } else {
-            //const amountBeersOnPage = this.props.dataPages.amountOnPageDefault;
+            //const amountBeersOnPage = this.props.dataPages.amountOnPage;
             //this.props.setAmountPage(amountBeersOnPage);
-            const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPageDefault);
+            const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
             this.props.setLastPage(lastPage);
         }
 

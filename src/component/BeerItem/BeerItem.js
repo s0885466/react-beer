@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 
 import {toggleFavoriteInBeers} from "../../actions/beersActions";
+import {addLocalStorage, removeLocalStorage} from "../../services/LocalStorage/LocalStorage";
 
 import Proptypes from 'prop-types';
 import React, {Component} from 'react';
@@ -8,8 +9,27 @@ import './BeerItem.css';
 
 class BeerItem extends Component {
 
+    toggleLocalStorage = () => {
+        const {
+            beer: {
+                id,
+                favorite
+            }
+        } = this.props;
+        if (favorite) {
+            removeLocalStorage(id)
+        } else {
+            addLocalStorage(id)
+        }
+    };
+
+    clickHandler = (id) => {
+        this.toggleLocalStorage();
+        this.props.toggleFavoriteInBeers(id);
+    };
+
     render() {
-        
+
         const {
             beer: {
                 id,
@@ -34,14 +54,14 @@ class BeerItem extends Component {
                 <div className="clearfix">
                     <h3>{name}</h3>
 
-                        <i
-                            onClick={() => this.props.toggleFavoriteInBeers(id)}
-                            className={favoriteClass}
-                        />
+                    <i
+                        onClick={() => this.clickHandler(id)}
+                        className={favoriteClass}
+                    />
 
                 </div>
 
-                <div><img src={image_url}/></div>
+                <div><img src={image_url} alt={name}/></div>
                 <ul>
                     <li>Поставщик: {contributed_by}</li>
                     <li>Впервые сварено: {first_brewed}</li>

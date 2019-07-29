@@ -18,6 +18,10 @@ class HomePage extends Component {
         console.log('componentDidMount HomePage')
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('componentDidUpdate HomePage')
+    }
+
     render() {
         console.log('render HomePage');
 

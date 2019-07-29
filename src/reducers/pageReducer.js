@@ -9,8 +9,7 @@ import {
 const initialState = {
     page: 1,
     amountOnPage: 10,
-    lastPage: 0,
-    amountOnPageDefault: 10
+    lastPage: 0
 };
 
 export const pageReducer = (state = initialState, action) => {

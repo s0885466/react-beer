@@ -16,7 +16,7 @@ class FavoritesPage extends Component {
         const newBeers = beers.filter((beer) => (beer.favorite === true));
         const dataPages = {
             page: 1,
-            amountOnPageDefault: beers.length + 1
+            amountOnPage: beers.length + 1
         };
 
         const result = (loading)

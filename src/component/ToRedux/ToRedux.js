@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {loadBeers, filterBeers} from "../../actions/beersActions";
 import {setLastPage, setAmountPage} from "../../actions/pageActions";
+import {getLocalStorage} from "../../services/LocalStorage/LocalStorage";
 
 import DataContext from '../../services/DataContext';
 
@@ -13,24 +14,24 @@ class ToRedux extends Component {
 
         this.context.getData()
             .then(data => {
-                //Первоначальная загрузка данных, когда Redux пуст
-                  this.props.loadBeers(data);
-                  this.props.filterBeers('');
-                  //Вычислим количество страниц
-                  const amountBeers = data.length;
-                console.log('количество пив', amountBeers);
-                console.log('количество пив на странице', this.props.dataPages.amountOnPageDefault);
+                const idFromLocalStorage = getLocalStorage();
+                if (idFromLocalStorage) {
+                    idFromLocalStorage.forEach(id => {
+                        data.forEach(el => {
+                            if (el.id === id){
+                                el.favorite = true;
+                            }
+                        })
+                    });
+                }
 
-
-
-                setAmountPage(this.props.dataPages.amountOnPageDefault);
-                  const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPageDefault);
-                console.log('последняя страница', lastPage);
-
-                  this.props.setLastPage(lastPage);
-
-                console.log('componentDidMount ToRedux')
-
+                //Загрузка данных в Redux
+                this.props.loadBeers(data);
+                this.props.filterBeers('');
+                //Вычислим количество страниц
+                const amountBeers = data.length;
+                const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
+                this.props.setLastPage(lastPage);
             })
             .catch(err => {
                 console.error(err);
