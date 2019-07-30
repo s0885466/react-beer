@@ -1,10 +1,10 @@
 .sort {
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .sort i{
     color: white;
-    background: #3b1f2b;
+    background: #2B303A;
     padding: 21px;
     transition: 0.5s;
     cursor: pointer;
@@ -12,7 +12,7 @@
 
 
 .sort i:hover{
-    background: #62364b;
+    background: #454c57;
 }
 
 .sort span {
@@ -23,12 +23,13 @@
 .sort span.button {
     cursor: pointer;
     transition: 0.5s;
-    padding: 19px;
-    background: #3b1f2b;
+    background: #2B303A;
     color: #f5f1ed;
+    font-size: 1rem;
+    height: 58px;
 }
 
 .sort span.button:hover {
-    background: #62364b;
+    background: #454c57;
 }
 

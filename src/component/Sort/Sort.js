@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Sort.css';
 
 const SortItem = (props) => {
@@ -24,7 +24,9 @@ const Sort = (props) => {
         <div className="sort row col-8">
             <SortItem {...props} label="По содержанию спирта" param="abv" />
             <SortItem {...props} label="По горечи IBU" param="ibu" />
-            <span className="button" onClick={() => props.sortBeers({param:'id', isUp:true})}>Сброс</span>
+            <span className="button"
+                  onClick={() => props.sortBeers({param:'id', isUp:true})}>
+                Сброс</span>
         </div>
     )
 };

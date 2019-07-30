@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Header.css';
-//import {NavLink} from 'react-router-dom';
-import { NavHashLink as NavLink } from 'react-router-hash-link';
+import {NavLink} from 'react-router-dom';
+//import { NavHashLink as NavLink } from 'react-router-hash-link';
 
 class Header extends Component {
     state = {

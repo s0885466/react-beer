@@ -2,7 +2,6 @@ import React from 'react';
 import './BeerList.css';
 import BeerItem from '../BeerItem';
 
-import WithSearch from '../HOC/WithSearch'
 
 const BeerList = (props) => {
 
@@ -27,5 +26,5 @@ const BeerList = (props) => {
     );
 };
 
-export default WithSearch(BeerList);
+export default BeerList;
 

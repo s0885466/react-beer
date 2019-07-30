@@ -55,8 +55,7 @@ class Modal extends Component {
 
     changePercent = (inputs) => {
         const len = inputs.length;
-        const newPercent = Math.floor(inputs.filter(el => el.isValid === true).length * 100 / len);
-        return newPercent;
+        return Math.floor(inputs.filter(el => el.isValid === true).length * 100 / len);
     };
 
     changeSubmitDisabled = (newInputs) => {
@@ -88,7 +87,7 @@ class Modal extends Component {
                 : "fa fa-times-circle font_red";
 
             return (
-                <div key={key}>
+                <div key={key} className="block_input">
                     <span><i className={iconClass}></i></span><label>{label}</label>
                     <div><input
                         onChange={(e) => this.changeInput(e, id)}
@@ -117,10 +116,10 @@ class Modal extends Component {
                     </div>
                     {inputs}
                     <div>
-                        <div className="submit"
+                        <button className="submit"
                             onClick={this.submitClick}
                             disabled={disabled}>Отправить
-                        </div>
+                        </button>
                         {messageBlock}
                     </div>
                 </div>
