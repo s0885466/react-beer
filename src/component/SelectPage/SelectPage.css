@@ -1,6 +1,10 @@
-.select_pages button {
+.select_pages .button {
     padding: 0.7rem;
     width: 100%;
+    background: #175676;
+    cursor: pointer;
+    text-align: center;
+    color: #f5f1ed;
 }
 
 .select_pages div.text_center {

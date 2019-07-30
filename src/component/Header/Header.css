@@ -1,5 +1,5 @@
 .header {
-    background: #6495ed;
+    background: #175676;
 }
 
 .header a:first-child {
@@ -12,17 +12,17 @@
 }
 
 .header a:hover {
-    background: #6e9fff;
+    background: #70798c;
 }
 
 
 a.selected{
-    background: #6e9fff;
+    background: #70798c;
 }
 
 
 a {
-    color: white;
+    color: #f5f1ed;
     text-decoration: none;
     padding: 2rem;
 }

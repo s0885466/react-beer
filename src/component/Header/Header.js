@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import './Header.css';
-import {NavLink} from 'react-router-dom';
+//import {NavLink} from 'react-router-dom';
+import { NavHashLink as NavLink } from 'react-router-hash-link';
 
 class Header extends Component {
     state = {
         elements: [
             {id: 1, link: '/', name: 'Главная', classItem: 'col-2 text_center'},
-            {id: 2, link: '/favorites', name: 'Избранное', classItem: 'col-2 text_center'}
+            {id: 3, link: '/favorites', name: 'Избранное', classItem: 'col-2 text_center'}
         ]
     };
 

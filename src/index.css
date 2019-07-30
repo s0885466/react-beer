@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    color: #3B1F2B;
 }
 .row {
     display: flex;

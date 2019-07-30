@@ -1,0 +1,16 @@
+div.modal_button {
+    position: fixed;
+    cursor: pointer;
+    right: 10px;
+    bottom: 30px;
+    padding: 10px 20px;
+    background-color: rgba(219, 22, 47, 0.8);
+    color: white;
+    font-size: 1.5rem;
+    transition: 0.5s;
+}
+div.modal_button:hover{
+    background-color: rgba(219, 22, 47, 0.7);
+    right: 35px;
+    box-shadow: 0 3px 3px rgba(243, 29, 0, 0.2);
+}

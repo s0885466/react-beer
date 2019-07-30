@@ -1,0 +1,144 @@
+import React, {Component} from 'react';
+import './Modal.css';
+import CheckModal from '../../services/CheckModal';
+import {connect} from "react-redux";
+import {toggleVisible} from "../../actions/modalActions";
+
+class Modal extends Component {
+
+    state = {
+        classClose: 'close',
+        classOverlay: 'modal_dialog',
+        progressBar: {percent: 0},
+        submit: {disabled: true},
+        message: false,
+        inputs: [
+            {
+                label: 'Email', id: 'email', type: 'text',
+                placeholder: '0885466@gmail.com', key: 1, isValid: false, value: ''
+            },
+            {
+                label: 'Address', id: 'address', type: 'text',
+                placeholder: 'Гаккелевская 27/2 кв.173', key: 2, isValid: false, value: ''
+            },
+            {
+                label: 'Phone', id: 'phone', type: 'text',
+                placeholder: '8 911 088 54 66', key: 3, isValid: false, value: ''
+            }
+        ]
+    };
+
+    validateInput = (id, value) => {
+        this.setState(({inputs}) => {
+            const index = inputs.findIndex(el => el.id === id);
+            const newInputs = [...inputs];
+            newInputs[index].value = value;
+            newInputs[index].isValid = CheckModal[id](value);
+            const newPercent = this.changePercent(newInputs);
+            const newDisabled = this.changeSubmitDisabled(newInputs);
+            return {
+                inputs: newInputs,
+                submit: {disabled: newDisabled},
+                progressBar: {percent: newPercent},
+                textArea: {class: 'hide'}
+            };
+        });
+    };
+
+    closeModal = (event) => {
+        const {classOverlay, classClose} = this.state;
+        if ((event.target.className.includes(classOverlay)) ||
+            (event.target.className.includes(classClose))) {
+            this.props.toggleVisible();
+        }
+    };
+
+    changePercent = (inputs) => {
+        const len = inputs.length;
+        const newPercent = Math.floor(inputs.filter(el => el.isValid === true).length * 100 / len);
+        return newPercent;
+    };
+
+    changeSubmitDisabled = (newInputs) => {
+        return newInputs.some(({isValid}) => isValid === false);
+    };
+
+    changeInput = (e, id) => {
+        const value = e.target.value;
+        this.validateInput(id, value);
+    };
+
+    submitClick = () => {
+        this.setState({message: true})
+    };
+
+    render() {
+
+        const {
+            classClose,
+            classOverlay,
+            progressBar: {percent},
+            submit: {disabled},
+            message
+        } = this.state;
+
+        const inputs = this.state.inputs.map(({label, id, type, placeholder, key, isValid, value}) => {
+            const iconClass = isValid
+                ? "fa fa-check-circle font_green"
+                : "fa fa-times-circle font_red";
+
+            return (
+                <div key={key}>
+                    <span><i className={iconClass}></i></span><label>{label}</label>
+                    <div><input
+                        onChange={(e) => this.changeInput(e, id)}
+                        type={type} placeholder={placeholder}/></div>
+                </div>
+            )
+        });
+
+        const styleProgressBar = {
+            width: `${percent}%`
+        };
+
+        const messageBlock = message
+            ? <span> Сообщение отправлено</span>
+            : null;
+
+        return (
+            <div
+                className={classOverlay}
+                onClick={(event) => this.closeModal(event)}>
+                <div>
+                    <i className={classClose + ' fa fa-close'}></i>
+                    <h2>Форма обратной связи</h2>
+                    <div className="progressbar">
+                        <div style={styleProgressBar}></div>
+                    </div>
+                    {inputs}
+                    <div>
+                        <div className="submit"
+                            onClick={this.submitClick}
+                            disabled={disabled}>Отправить
+                        </div>
+                        {messageBlock}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        dataModal: state.dataModal
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        toggleVisible: () => dispatch(toggleVisible())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

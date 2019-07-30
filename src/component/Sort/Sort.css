@@ -4,22 +4,31 @@
 
 .sort i{
     color: white;
-    background: #474747;
-    padding: 10px;
+    background: #3b1f2b;
+    padding: 21px;
     transition: 0.5s;
     cursor: pointer;
 }
 
 
 .sort i:hover{
-    background: #686868;
+    background: #62364b;
 }
 
 .sort span {
-    background: #dbdbdb;
-    padding: 10px;
+    background: #f5f1ed;
+    padding: 20px;
 }
 
-.sort button {
-    padding: 0 20px;
+.sort span.button {
+    cursor: pointer;
+    transition: 0.5s;
+    padding: 19px;
+    background: #3b1f2b;
+    color: #f5f1ed;
 }
+
+.sort span.button:hover {
+    background: #62364b;
+}
+

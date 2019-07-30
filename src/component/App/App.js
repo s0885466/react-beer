@@ -2,41 +2,51 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {HomePage, FavoritesPage} from '../Pages';
 import ErrorBoundary from '../ErrorBoundary';
-import DataComponent from '../ToRedux';
+import ToRedux from '../ToRedux';
+import Modal from '../Modal';
+import ModalButton from '../ModalButton';
+import {connect} from 'react-redux';
+
 
 import Header from '../Header';
 
-class App extends Component {
-    render() {
-        return (
-            <div>
-                <BrowserRouter>
-                    <DataComponent/>
-                    <Header/>
-                    <Switch>
-                        <Route path="/"
-                               render={() => (
-                                   <ErrorBoundary>
-                                       <HomePage/>
-                                   </ErrorBoundary>
-                               )}
-                               exact
-                        />
-                        <Route path="/favorites/"
-                               render={() => (
-                                   <ErrorBoundary>
-                                       <FavoritesPage/>
-                                   </ErrorBoundary>
+const App = (props) => (
+    <div>
+        <BrowserRouter>
+            <ErrorBoundary>
+                <ModalButton/>
+                {props.dataModal.isVisible && <Modal/>}
+            </ErrorBoundary>
+            <ToRedux/>
+            <Header/>
+            <Switch>
+                <Route path="/"
+                       render={() => (
+                           <ErrorBoundary>
+                               <HomePage/>
+                           </ErrorBoundary>
+                       )}
+                       exact
+                />
+                <Route path="/favorites/"
+                       render={() => (
+                           <ErrorBoundary>
+                               <FavoritesPage/>
+                           </ErrorBoundary>
 
-                               )}
-                               exact
-                        />
-                        <Route/>
-                    </Switch>
-                </BrowserRouter>
-            </div>
-        );
+                       )}
+                       exact
+                />
+                <Route/>
+            </Switch>
+        </BrowserRouter>
+    </div>
+);
+
+const mapStateToProps = state => {
+    return {
+        dataModal: state.dataModal
     }
-}
+};
 
-export default App;
+export default connect(mapStateToProps)(App);

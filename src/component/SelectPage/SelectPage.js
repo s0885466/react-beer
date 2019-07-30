@@ -20,19 +20,19 @@ class SelectPage extends Component {
         return (
             <div className="select_pages row">
                 <div className="col-2">
-                    <button
+                    <div
                         onClick={prevPage}
-                        className={classPrevButton}>Назад
-                    </button>
+                        className={`${classPrevButton} button`}>Назад
+                    </div>
                 </div>
                 <div className="col-8 text_center">
                     <b>Страница {page}({lastPage})</b>
                 </div>
                 <div className="col-2">
-                    <button
+                    <div
                         onClick={nextPage}
-                        className={classNextButton}>Вперед
-                    </button>
+                        className={`${classNextButton} button`}>Вперед
+                    </div>
                 </div>
             </div>
         );
