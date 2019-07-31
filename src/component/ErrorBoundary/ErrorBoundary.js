@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './ErrorBoundary.css';
 class ErrorBoundary extends Component {
-
     state = {
         error: null,
         errorInfo: null
@@ -24,7 +23,7 @@ class ErrorBoundary extends Component {
                     <h1>Возникла ошибка ErrorBoundary</h1>
                     <p>Данные об ошибке отправлены нашим программистам</p>
                 </div>
-            )
+            );
         }
         return this.props.children;
     }

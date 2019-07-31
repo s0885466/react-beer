@@ -10,7 +10,7 @@ export const modalReducer = (state = initialState, action) => {
             return {
                 ...state, isVisible: !state.isVisible
             };
-
+            
         default:
             return state;
     }

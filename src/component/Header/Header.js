@@ -1,32 +1,36 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Header.css';
 import {NavLink} from 'react-router-dom';
-//import { NavHashLink as NavLink } from 'react-router-hash-link';
+import Proptypes from 'prop-types';
+import {WithHeader} from '../HOC';
 
-class Header extends Component {
-    state = {
-        elements: [
-            {id: 1, link: '/', name: 'Главная', classItem: 'col-2 text_center'},
-            {id: 3, link: '/favorites', name: 'Избранное', classItem: 'col-2 text_center'}
-        ]
-    };
-
-    render() {
-        const activeClass = 'selected';
-        const headerItems = this.state.elements.map(({id, link, name, classItem}) => {
-            return (
-                    <NavLink exact to={link}
-                             activeClassName={activeClass}
-                             key={id} className={classItem}
-                    >{name}</NavLink>
-            )
-        });
+const Header = (props) => {
+    const activeClass = 'selected';
+    const headerItems = props.elements.map(({id, link, name, classItem}) => {
         return (
-            <div className="header row flex_end">
-                {headerItems}
-            </div>
-        );
-    }
-}
+            <NavLink exact to={link}
+                     activeClassName={activeClass}
+                     key={id} className={classItem}
+            >{name}</NavLink>
+        )
+    });
 
-export default Header;
+    return (
+        <div className="header row flex_end">
+            {headerItems}
+        </div>
+    );
+};
+
+const newProps = {
+    elements: [
+        {id: 1, link: '/', name: 'Главная', classItem: 'col-2 text_center'},
+        {id: 2, link: '/favorites', name: 'Избранное', classItem: 'col-2 text_center'}
+    ]
+};
+
+export default WithHeader(Header, newProps);
+
+Header.propTypes = {
+    elements: Proptypes.array.isRequired,
+};

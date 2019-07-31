@@ -1,53 +1,36 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './HomePage.css';
-
 import Search from "../../Search";
 import Spinner from '../../Spinner';
 import BeerList from '../../BeerList';
 import SelectPage from '../../SelectPage';
 import Sort from '../../Sort';
-
 import {connect} from 'react-redux';
-
 import {loadBeers, sortBeers} from "../../../actions/beersActions";
 import {setLastPage} from "../../../actions/pageActions";
+import Proptypes from "prop-types";
 
-class HomePage extends Component {
+const HomePage = (props) => {
+    const {loading} = props.dataBeers;
+    const result = (loading)
+        ? <Spinner/>
+        : <React.Fragment>
+            <div className="row">
+                <Sort sortBeers={props.sortBeers}/>
+                <Search/>
+            </div>
+            <SelectPage/>
+            <BeerList {...props.dataBeers} {...props.dataPages}/>
+        </React.Fragment>
+    ;
 
-    componentDidMount() {
-        console.log('componentDidMount HomePage')
-    }
+    return (
+        <React.Fragment>
+            {result}
+        </React.Fragment>
+    );
+};
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('componentDidUpdate HomePage')
-    }
-
-    render() {
-        console.log('render HomePage');
-
-        const {loading} = this.props.dataBeers;
-
-        const result = (loading)
-                ? <Spinner/>
-                : <React.Fragment>
-                    <div className="row">
-                        <Sort sortBeers={this.props.sortBeers}/>
-                        <Search/>
-                    </div>
-
-                    <SelectPage/>
-
-                    <BeerList {...this.props.dataBeers} {...this.props.dataPages}/>
-                </React.Fragment>
-        ;
-
-        return (
-            <React.Fragment>
-                {result}
-            </React.Fragment>
-        );
-    }
-}
 
 const mapStateToProps = state => {
     return {
@@ -60,7 +43,7 @@ const mapDispatchToProps = dispatch => {
     return {
         loadBeers: (data) => dispatch(loadBeers(data)),
         setLastPage: (page) => dispatch(setLastPage(page)),
-        sortBeers: (param) => dispatch(sortBeers(param)),
+        sortBeers: (param) => dispatch(sortBeers(param))
     }
 };
 
@@ -68,4 +51,12 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(HomePage);
+
+HomePage.propTypes = {
+    dataPages: Proptypes.object.isRequired,
+    dataBeers: Proptypes.object.isRequired,
+    loadBeers: Proptypes.func.isRequired,
+    setLastPage: Proptypes.func.isRequired,
+    sortBeers: Proptypes.func.isRequired
+};
 

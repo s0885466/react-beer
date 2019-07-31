@@ -3,18 +3,15 @@ import './Search.css';
 import {connect} from 'react-redux';
 import {filterBeers} from "../../actions/beersActions";
 import {setAmountPage, setLastPage, setFirstPage} from "../../actions/pageActions";
+import Proptypes from 'prop-types';
 
 class Search extends Component {
-
     filterBeers = (e) => {
         this.props.setFirstPage(1);
         const amountBeers = this.props.dataBeers.beers.length;
         if (e.target.value) {
-            //this.props.setAmountPage(amountBeers);
             this.props.setLastPage(1);
         } else {
-            //const amountBeersOnPage = this.props.dataPages.amountOnPage;
-            //this.props.setAmountPage(amountBeersOnPage);
             const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
             this.props.setLastPage(lastPage);
         }
@@ -23,7 +20,10 @@ class Search extends Component {
     };
 
     componentWillUnmount() {
-        //Когда компонент умрет мы делаем все элементы видимыми
+        //Чтобы произвести сброс филтра и страниц при уничтожении компонента
+        const amountBeers = this.props.dataBeers.beers.length;
+        const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
+        this.props.setLastPage(lastPage);
         this.props.filterBeers('');
     }
 
@@ -40,7 +40,6 @@ class Search extends Component {
         )
     }
 }
-
 
 const mapStateToProps = state => {
     return {
@@ -59,3 +58,12 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
+
+Search.propTypes = {
+    dataBeers: Proptypes.object.isRequired,
+    dataPages: Proptypes.object.isRequired,
+    filterBeers: Proptypes.func.isRequired,
+    setAmountPage: Proptypes.func.isRequired,
+    setLastPage: Proptypes.func.isRequired,
+    setFirstPage: Proptypes.func.isRequired,
+};

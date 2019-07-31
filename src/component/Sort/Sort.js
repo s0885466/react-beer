@@ -1,5 +1,6 @@
 import React from 'react';
 import './Sort.css';
+import Proptypes from 'prop-types';
 
 const SortItem = (props) => {
     const {label, param, sortBeers} = props;
@@ -22,12 +23,16 @@ const SortItem = (props) => {
 const Sort = (props) => {
     return (
         <div className="sort row col-8">
-            <SortItem {...props} label="По содержанию спирта" param="abv" />
-            <SortItem {...props} label="По горечи IBU" param="ibu" />
+            <SortItem {...props} label="По содержанию спирта" param="abv"/>
+            <SortItem {...props} label="По горечи IBU" param="ibu"/>
             <span className="button"
-                  onClick={() => props.sortBeers({param:'id', isUp:true})}>
+                  onClick={() => props.sortBeers({param: 'id', isUp: true})}>
                 Сброс</span>
         </div>
     )
 };
 export default Sort;
+
+Sort.propTypes = {
+    sortBeers: Proptypes.func.isRequired
+};

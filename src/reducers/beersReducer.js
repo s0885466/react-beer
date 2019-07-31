@@ -11,7 +11,6 @@ const initialState = {
     loading: true
 };
 
-
 export const beersReducer = (state = initialState, action) => {
     switch (action.type) {
         case BEERS_LOADED:

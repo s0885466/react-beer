@@ -1,21 +1,19 @@
-import {connect} from 'react-redux';
-
 import {toggleFavoriteInBeers} from "../../actions/beersActions";
 import {addLocalStorage, removeLocalStorage} from "../../services/LocalStorage/LocalStorage";
-
+import {connect} from 'react-redux';
 import Proptypes from 'prop-types';
-import React, {Component} from 'react';
+import React from 'react';
 import './BeerItem.css';
 
-class BeerItem extends Component {
-
-    toggleLocalStorage = () => {
+const BeerItem = (props) => {
+    const toggleLocalStorage = () => {
         const {
             beer: {
                 id,
                 favorite
             }
-        } = this.props;
+        } = props;
+
         if (favorite) {
             removeLocalStorage(id)
         } else {
@@ -23,59 +21,53 @@ class BeerItem extends Component {
         }
     };
 
-    clickHandler = (id) => {
-        this.toggleLocalStorage();
-        this.props.toggleFavoriteInBeers(id);
+    const clickHandler = (id) => {
+        toggleLocalStorage();
+        props.toggleFavoriteInBeers(id);
     };
 
-    render() {
+    const {
+        beer: {
+            id,
+            name,
+            image_url,
+            abv,
+            ibu,
+            description,
+            contributed_by,
+            first_brewed,
+            favorite
+        }
+    } = props;
 
-        const {
-            beer: {
-                id,
-                name,
-                image_url,
-                abv,
-                ibu,
-                description,
-                contributed_by,
-                first_brewed,
-                favorite
-            }
+    const favoriteClass = favorite
+        ? "fa fa-heart"
+        : "fa fa-heart-o";
 
-        } = this.props;
-
-        const favoriteClass = favorite
-            ? "fa fa-heart"
-            : "fa fa-heart-o";
-
-        return (
-            <div className="col-3 cart_item">
-                <div className="clearfix">
-                    <h3>{name}</h3>
-
-                    <i
-                        onClick={() => this.clickHandler(id)}
-                        className={favoriteClass}
-                    />
-
-                </div>
-
-                <div><img src={image_url} alt={name}/></div>
-                <ul>
-                    <li>Поставщик: {contributed_by}</li>
-                    <li>Впервые сварено: {first_brewed}</li>
-                    <li>Алкоголь: {abv}%</li>
-                    <li>Горечь IBU: {ibu}</li>
-                </ul>
-                <h4>Описание:</h4>
-                <div className="description">
-                    <p>{description}</p>
-                </div>
+    return (
+        <div className="col-3 cart_item">
+            <div className="clearfix">
+                <h3>{name}</h3>
+                <i
+                    onClick={() => clickHandler(id)}
+                    className={favoriteClass}
+                />
             </div>
-        );
-    }
-}
+
+            <div><img src={image_url} alt={name}/></div>
+            <ul>
+                <li>Поставщик: {contributed_by}</li>
+                <li>Впервые сварено: {first_brewed}</li>
+                <li>Алкоголь: {abv}%</li>
+                <li>Горечь IBU: {ibu}</li>
+            </ul>
+            <h4>Описание:</h4>
+            <div className="description">
+                <p>{description}</p>
+            </div>
+        </div>
+    );
+};
 
 const mapDispatchToProps = dispatch => {
     return {

@@ -2,6 +2,7 @@ import React from 'react';
 import './ModalButton.css';
 import {connect} from 'react-redux';
 import {toggleVisible} from "../../actions/modalActions";
+import Proptypes from 'prop-types';
 
 const ModalButton = (props) => {
     return (
@@ -20,3 +21,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(() => ({}), mapDispatchToProps)(ModalButton);
+
+ModalButton.propTypes = {
+    toggleVisible: Proptypes.func.isRequired,
+};

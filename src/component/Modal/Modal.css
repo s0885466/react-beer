@@ -1,5 +1,6 @@
 
 .modal_dialog {
+    font-size: 1.2rem;
     background: #f5f1ed;
     position: fixed;
     top: 0;
@@ -33,7 +34,7 @@ color: #175676;
 }
 
 .modal_dialog > div {
-    width: 30%;
+    width: 40%;
     position: relative;
     margin: 10% auto;
     padding: 5px 20px 13px 20px;
