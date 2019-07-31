@@ -7,6 +7,8 @@ import Sort from '../../Sort';
 import {connect} from 'react-redux';
 import {sortBeers} from "../../../actions/beersActions";
 import Proptypes from 'prop-types';
+import BeerInfo from "../../BeerInfo";
+import ErrorBoundary from '../../ErrorBoundary';
 
 const FavoritesPage = (props) => {
     const {loading, beers} = props.dataBeers;
@@ -20,7 +22,9 @@ const FavoritesPage = (props) => {
         ? <Spinner/>
         : <React.Fragment>
             <div className="row">
-                <Sort sortBeers={props.sortBeers}/>
+                <ErrorBoundary>
+                    <Sort sortBeers={props.sortBeers}/>
+                </ErrorBoundary>
                 <Search/>
             </div>
             <div className="select_pages row">
@@ -30,10 +34,14 @@ const FavoritesPage = (props) => {
                     <b>Страница 1(1)</b>
                 </div>
                 <div className="col-2">
-
                 </div>
             </div>
-            <BeerList beers={newBeers} {...dataPages}/>
+            <ErrorBoundary>
+                <BeerList beers={newBeers} {...dataPages}/>
+            </ErrorBoundary>
+            <ErrorBoundary>
+                <BeerInfo/>
+            </ErrorBoundary>
         </React.Fragment>
     ;
 
