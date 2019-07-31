@@ -2,13 +2,15 @@ import {
     BEERS_LOADED,
     BEERS_TOGGLE_FAVORITES,
     BEERS_SORT,
-    BEERS_FILTER
+    BEERS_FILTER,
+    BEERS_ID_SELECTED
 } from "../actions/beersActions";
 
 const initialState = {
     beers: [],
     filter: '',
-    loading: true
+    loading: true,
+    selectedId: null
 };
 
 export const beersReducer = (state = initialState, action) => {
@@ -17,12 +19,16 @@ export const beersReducer = (state = initialState, action) => {
             return {
                 ...state, beers: action.payload, loading: false
             };
+        case BEERS_ID_SELECTED:
+            return {
+                ...state, selectedId: action.payload
+            };
 
         case BEERS_TOGGLE_FAVORITES:
             const idBeer = +action.payload;
             const index = state.beers.findIndex(beer => beer.id === idBeer);
             const beer = state.beers[index];
-            beer.favorite = ! beer.favorite;
+            beer.favorite = !beer.favorite;
 
             return {
                 ...state, beers: [...state.beers.slice(0, index), beer, ...state.beers.slice(index + 1)]
@@ -53,8 +59,8 @@ export const beersReducer = (state = initialState, action) => {
             } else {
                 newBeers.forEach((beer) => {
                     (beer.name.toLowerCase().indexOf(filter) > -1)
-                    ? beer.isVisible = true
-                    : beer.isVisible = false
+                        ? beer.isVisible = true
+                        : beer.isVisible = false
                 });
             }
 

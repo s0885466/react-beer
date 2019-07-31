@@ -7,11 +7,11 @@ div.search {
 }
 
 .search input {
-    padding: 8px;
+    padding: 12px 0;
     border-radius: 2px;
     border: 1px solid #6e9fff;
 }
 
 .search label {
-    font-size: 1.1rem;
+    padding: 12px;
 }

@@ -1,4 +1,4 @@
-import {toggleFavoriteInBeers} from "../../actions/beersActions";
+import {toggleFavoriteInBeers, selectedIdBeer } from "../../actions/beersActions";
 import {addLocalStorage, removeLocalStorage} from "../../services/LocalStorage/LocalStorage";
 import {connect} from 'react-redux';
 import Proptypes from 'prop-types';
@@ -65,13 +65,17 @@ const BeerItem = (props) => {
             <div className="description">
                 <p>{description}</p>
             </div>
+            <div
+                onClick={() => props.selectedIdBeer(id)}
+                className="button">Подробнее...</div>
         </div>
     );
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        toggleFavoriteInBeers: (id) => dispatch(toggleFavoriteInBeers(id))
+        toggleFavoriteInBeers: (id) => dispatch(toggleFavoriteInBeers(id)),
+        selectedIdBeer: (id) => dispatch(selectedIdBeer(id))
     }
 };
 

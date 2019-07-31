@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     color: #3B1F2B;
+    font-size: 1rem;
 }
 .row {
     display: flex;

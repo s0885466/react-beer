@@ -8,6 +8,7 @@ import Sort from '../../Sort';
 import {connect} from 'react-redux';
 import {loadBeers, sortBeers} from "../../../actions/beersActions";
 import {setLastPage} from "../../../actions/pageActions";
+import BeerInfo from '../../BeerInfo';
 import Proptypes from "prop-types";
 
 const HomePage = (props) => {
@@ -21,6 +22,7 @@ const HomePage = (props) => {
             </div>
             <SelectPage/>
             <BeerList {...props.dataBeers} {...props.dataPages}/>
+            <BeerInfo/>
         </React.Fragment>
     ;
 
