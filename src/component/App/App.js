@@ -16,21 +16,19 @@ const App = (props) => (
                 {props.dataModal.isVisible && <Modal/>}
             </ErrorBoundary>
             <ToRedux/>
-            <Header/>
+            <ErrorBoundary>
+                <Header/>
+            </ErrorBoundary>
             <Switch>
                 <Route path="/"
                        render={() => (
-                           <ErrorBoundary>
-                               <HomePage/>
-                           </ErrorBoundary>
+                           <HomePage/>
                        )}
                        exact
                 />
                 <Route path="/favorites/"
                        render={() => (
-                           <ErrorBoundary>
-                               <FavoritesPage/>
-                           </ErrorBoundary>
+                           <FavoritesPage/>
                        )}
                        exact
                 />

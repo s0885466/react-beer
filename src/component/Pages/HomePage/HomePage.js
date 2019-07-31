@@ -9,6 +9,7 @@ import {connect} from 'react-redux';
 import {loadBeers, sortBeers} from "../../../actions/beersActions";
 import {setLastPage} from "../../../actions/pageActions";
 import BeerInfo from '../../BeerInfo';
+import ErrorBoundary from '../../ErrorBoundary';
 import Proptypes from "prop-types";
 
 const HomePage = (props) => {
@@ -17,12 +18,20 @@ const HomePage = (props) => {
         ? <Spinner/>
         : <React.Fragment>
             <div className="row">
-                <Sort sortBeers={props.sortBeers}/>
+                <ErrorBoundary>
+                    <Sort sortBeers={props.sortBeers}/>
+                </ErrorBoundary>
                 <Search/>
             </div>
-            <SelectPage/>
-            <BeerList {...props.dataBeers} {...props.dataPages}/>
-            <BeerInfo/>
+            <ErrorBoundary>
+                <SelectPage/>
+            </ErrorBoundary>
+            <ErrorBoundary>
+                <BeerList {...props.dataBeers} {...props.dataPages}/>
+            </ErrorBoundary>
+            <ErrorBoundary>
+                <BeerInfo/>
+            </ErrorBoundary>
         </React.Fragment>
     ;
 
