@@ -1,0 +1,23 @@
+.beer_info {
+    width: 100%;
+    align-items: center;
+    border: 1px solid #f3f3f3;
+}
+.beer_info .image img{
+    max-height: 300px;
+}
+
+.beer_info .image {
+    text-align: center;
+}
+
+.beer_info .center{
+    margin: auto;
+    width: 100%;
+    background-color: #175676;
+}
+
+.beer_info .center h2{
+    color: #f5f1ed;
+    padding: 0 20px;
+}

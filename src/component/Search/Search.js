@@ -30,9 +30,10 @@ class Search extends Component {
     render() {
         return (
             <div className="col-4 search">
-                <div className="right">
-                    <label htmlFor="search">Поиск: </label>
+                <div className="right row">
+                    <label htmlFor="search" className="col-2">Поиск: </label>
                     <input
+                        className="col-8"
                         onChange={this.filterBeers}
                         type="text" id="search"/>
                 </div>

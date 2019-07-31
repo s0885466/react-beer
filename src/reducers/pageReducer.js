@@ -8,7 +8,7 @@ import {
 
 const initialState = {
     page: 1,
-    amountOnPage: 10,
+    amountOnPage: 4,
     lastPage: 0
 };
 
