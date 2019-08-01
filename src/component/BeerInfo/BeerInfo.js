@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import './BeerInfo.css';
 import Spinner from '../Spinner';
 import {connect} from 'react-redux';
+import DataContext from "../../services/DataContext";
 
 class BeerInfo extends Component {
+    static contextType = DataContext;
     state = {
         loading: false
     };
@@ -13,16 +15,10 @@ class BeerInfo extends Component {
         if ((this.props.dataBeers.selectedId)
             && (this.props.dataBeers.selectedId !== this.state.id)
             && (!this.state.loading)) {
-
             const id = this.props.dataBeers.selectedId;
-            const url = `https://api.punkapi.com/v2/beers/${id}`;
             this.setState({loading: true});
-            fetch(url)
-                .then(response => {
-                    return response.json();
-                })
+            this.context.getData(id)
                 .then((data) => {
-
                     this.setState(() => {
                         return {...data[0], loading: false}
                     });
