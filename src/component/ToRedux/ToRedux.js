@@ -13,26 +13,27 @@ class ToRedux extends Component {
         this.context.getData()
             .then(data => {
                 //трансформация данных
-                const idFromLocalStorage = getLocalStorage();
-                if (idFromLocalStorage) {
-                    idFromLocalStorage.forEach(id => {
-                        data.forEach(el => {
-                            if (el.id === id) {
-                                el.favorite = true;
-                            }
-                        })
-                    });
-                }
-                //Загрузка данных в Redux
-                this.props.loadBeers(data);
-                this.props.filterBeers('');
-
-                const amountBeers = data.length;
-                const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
-                this.props.setLastPage(lastPage);
+                    const idFromLocalStorage = getLocalStorage();
+                    if (idFromLocalStorage) {
+                        idFromLocalStorage.forEach(id => {
+                            data.forEach(el => {
+                                if (el.id === id) {
+                                    el.favorite = true;
+                                }
+                            })
+                        });
+                        //Загрузка данных в Redux
+                        this.props.loadBeers(data);
+                        this.props.filterBeers('');
+                        const amountBeers = data.length;
+                        const lastPage = Math.ceil(amountBeers / this.props.dataPages.amountOnPage);
+                        this.props.setLastPage(lastPage);
+                    }
             })
             .catch(err => {
                 console.error(err);
+                const error = {error: true};
+                this.props.loadBeers(error);
             })
     }
 
