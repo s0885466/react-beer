@@ -1,6 +1,6 @@
 class RemoteData {
     //url = 'http://localhost:3001/beer';
-    url = 'https://api.punkapi.com/v2/beerss';
+    url = 'https://api.punkapi.com/v2/beers';
 
     getData(id) {
         const url = (id === undefined)
