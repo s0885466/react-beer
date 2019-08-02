@@ -10,29 +10,28 @@ import {loadBeers, sortBeers} from "../../../actions/beersActions";
 import {setLastPage} from "../../../actions/pageActions";
 import BeerInfo from '../../BeerInfo';
 import ErrorBoundary from '../../ErrorBoundary';
+import Error from '../../Error';
 import Proptypes from "prop-types";
 
 const HomePage = (props) => {
-    const {loading} = props.dataBeers;
-    const result = (loading)
-        ? <Spinner/>
-        : <React.Fragment>
-            <div className="row">
+    const {loading, beers: {error}} = props.dataBeers;
+    const result = (error)
+        ? <Error/>
+        : (loading)
+            ? <Spinner/>
+            : <React.Fragment>
                 <ErrorBoundary>
-                    <Sort sortBeers={props.sortBeers}/>
+                    <div className="row">
+                        <Sort sortBeers={props.sortBeers}/>
+                        <Search/>
+                    </div>
+                    <SelectPage/>
+                    <BeerList {...props.dataBeers} {...props.dataPages}/>
                 </ErrorBoundary>
-                <Search/>
-            </div>
-            <ErrorBoundary>
-                <SelectPage/>
-            </ErrorBoundary>
-            <ErrorBoundary>
-                <BeerList {...props.dataBeers} {...props.dataPages}/>
-            </ErrorBoundary>
-            <ErrorBoundary>
-                <BeerInfo/>
-            </ErrorBoundary>
-        </React.Fragment>
+                <ErrorBoundary>
+                    <BeerInfo/>
+                </ErrorBoundary>
+            </React.Fragment>
     ;
 
     return (

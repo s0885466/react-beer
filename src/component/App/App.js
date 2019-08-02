@@ -15,7 +15,7 @@ const App = (props) => (
                 <ModalButton/>
                 {props.dataModal.isVisible && <Modal/>}
             </ErrorBoundary>
-            <ToRedux/>
+                <ToRedux/>
             <ErrorBoundary>
                 <Header/>
             </ErrorBoundary>

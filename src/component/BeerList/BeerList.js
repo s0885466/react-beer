@@ -4,7 +4,6 @@ import BeerItem from '../BeerItem';
 import Proptypes from 'prop-types';
 
 const BeerList = (props) => {
-
     const {page, amountOnPage} = props;
     const firstIndex = page * amountOnPage - amountOnPage;
     const lastIndex = firstIndex + amountOnPage - 1;
