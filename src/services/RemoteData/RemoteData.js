@@ -8,7 +8,9 @@ class RemoteData {
             : this.url + '/' + id;
         return fetch(url)
             .then((response) => {
-                return response.json();
+                if (response.ok) {
+                    return response.json();
+                }
             })
             .catch((err) => {
                 console.log(err);

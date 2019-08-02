@@ -3,7 +3,11 @@ import './Modal.css';
 import CheckModal from '../../services/CheckModal';
 import {connect} from "react-redux";
 import {toggleVisible} from "../../actions/modalActions";
+import Input from './Input';
+import ProgressBar from './ProgressBar';
+import Submit from './Submit';
 import {WithModal} from '../HOC';
+
 
 class Modal extends Component {
 
@@ -76,25 +80,13 @@ class Modal extends Component {
             message
         } = this.state;
 
-        const inputs = this.state.inputs.map(({label, id, type, placeholder, key, isValid, value}) => {
-            const iconClass = isValid
-                ? "fa fa-check-circle font_green"
-                : "fa fa-times-circle font_red";
-
+        const inputs = this.state.inputs.map((input) => {
             return (
-                <div key={key} className="block_input">
-                    <span><i className={iconClass}></i></span><label>{label}</label>
-                    <div><input
-                        value={value}
-                        onChange={(e) => this.changeInput(e, id)}
-                        type={type} placeholder={placeholder}/></div>
+                <div key={input.key} className="block_input">
+                    <Input {...input} changeInput={(e) => this.changeInput(e, input.id)}/>
                 </div>
             )
         });
-
-        const styleProgressBar = {
-            width: `${percent}%`
-        };
 
         const messageBlock = message
             ? <span> Сообщение отправлено</span>
@@ -107,15 +99,14 @@ class Modal extends Component {
                 <div>
                     <i className={classClose + ' fa fa-close'}></i>
                     <h2>Форма обратной связи</h2>
-                    <div className="progressbar">
-                        <div style={styleProgressBar}></div>
-                    </div>
+                    <ProgressBar percent={percent}/>
                     {inputs}
+
                     <div>
-                        <button className="submit"
-                                onClick={this.submitClick}
-                                disabled={disabled}>Отправить
-                        </button>
+                        <Submit
+                            disabled={disabled}
+                            submitClick={this.submitClick}
+                        />
                         {messageBlock}
                     </div>
                 </div>
