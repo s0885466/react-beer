@@ -1,0 +1,15 @@
+button.submit {
+    padding: 10px 20px;
+    margin: 20px 0 10px 0;
+    background: #db162f;
+    display: inline-block;
+    border-radius: 5px;
+    border: none;
+    color: #f5f1ed;
+    transition: 0.5s;
+}
+
+button.submit:disabled {
+    cursor: auto;
+    background: #999999;
+}
