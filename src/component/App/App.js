@@ -13,7 +13,8 @@ const App = (props) => (
         <BrowserRouter>
             <ErrorBoundary>
                 <ModalButton/>
-                {props.dataModal.isVisible && <Modal/>}
+                {props.dataModal.isVisible &&
+                <Modal/>}
             </ErrorBoundary>
                 <ToRedux/>
             <ErrorBoundary>
