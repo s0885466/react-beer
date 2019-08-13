@@ -6,7 +6,7 @@ import {
     BEERS_ID_SELECTED
 } from "../actions/beersActions";
 
-const initialState = {
+export const initialState = {
     beers: [],
     filter: '',
     loading: true,
@@ -21,18 +21,20 @@ export const beersReducer = (state = initialState, action) => {
             };
         case BEERS_ID_SELECTED:
             return {
-                ...state, selectedId: action.payload
+                ...state, selectedId: +action.payload
             };
 
         case BEERS_TOGGLE_FAVORITES:
             const idBeer = +action.payload;
             const index = state.beers.findIndex(beer => beer.id === idBeer);
-            const beer = state.beers[index];
-            beer.favorite = !beer.favorite;
+            if (index > -1) {
+                const beer = state.beers[index];
+                beer.favorite = !beer.favorite;
 
-            return {
-                ...state, beers: [...state.beers.slice(0, index), beer, ...state.beers.slice(index + 1)]
-            };
+                return {
+                    ...state, beers: [...state.beers.slice(0, index), beer, ...state.beers.slice(index + 1)]
+                };
+            }
 
         case BEERS_SORT: {
             const {param, isUp} = action.payload;
