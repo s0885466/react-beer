@@ -11,7 +11,8 @@ const Header = (props) => {
             <NavLink exact to={link}
                      activeClassName={activeClass}
                      key={id} className={classItem}
-            >{name}</NavLink>
+            >{name}
+            </NavLink>
         )
     });
 

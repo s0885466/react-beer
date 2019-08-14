@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "font-awesome": "^4.7.0",
+    "jest-extended": "^0.11.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -14,6 +15,7 @@
     "react-router-hash-link": "^1.2.2",
     "react-router-redux": "^4.0.8",
     "react-scripts": "3.0.1",
+    "react-test-renderer": "^16.9.0",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"

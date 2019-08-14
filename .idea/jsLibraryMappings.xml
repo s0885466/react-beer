@@ -2,7 +2,6 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{beer/node_modules}" />
-    <file url="PROJECT" libraries="{@types/jest, beer/node_modules}" />
-    <includedPredefinedLibrary name="Node.js Core" />
+    <file url="PROJECT" libraries="{@types/jest, @types/react-test-renderer, beer/node_modules}" />
   </component>
 </project>
